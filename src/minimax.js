@@ -109,15 +109,21 @@ to have longer lines than shorter lines.
 You'll want to pass the tests defined in minimax_specs.js.
 */
 var heuristic = function(state, maximizingPlayer){
-
+	let result = 0;
+	let multiplierFromTwoToThree = 5;
 	//This is how you can retrieve the minimizing player.
-    var minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
+  let minimizingPlayer = (maximizingPlayer === 'x') ? 'o' : 'x';
 
 	//An example.
-    var linesOfLengthTwoForX = state.numLines(2, 'x')
-
+    let linesOfTwoForMin = state.numLines(2, minimizingPlayer);
+		let linesOfTwoForMax = state.numLines(2, maximizingPlayer);
+		let linesOfThreeForMin = state.numLines(2,minimizingPlayer);
+		let linesOfThreeForMax = state.numLines(2,maximizingPlayer);
     //Your code here.  Don't return random, obviously.
-	return Math.random()
+		result+=linesOfTwoForMax-linesOfThreeForMin;
+		result+=multiplierFromTwoToThree*(linesOfThreeForMax-linesOfThreeForMin);
+
+	return result;
 }
 
 
